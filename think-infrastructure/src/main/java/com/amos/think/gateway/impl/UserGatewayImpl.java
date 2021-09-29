@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -34,10 +35,9 @@ public class UserGatewayImpl implements UserGateway {
     @Override
     public void save(UserEntity userEntity) {
         UserDO userDO = null;
-        if (StringUtils.isNotBlank(userEntity.getId())) {
+        if (Objects.nonNull(userEntity.getId())) {
             Optional<UserDO> byId = userRepository.findById(userEntity.getId());
             if (byId.isPresent()) {
-
                 // 更新
                 userDO = byId.get();
                 UserConvertor.mergeDataObject(userEntity, userDO);
@@ -76,7 +76,7 @@ public class UserGatewayImpl implements UserGateway {
     }
 
     @Override
-    public Boolean existUsername(String userId, String username) {
+    public Boolean existUsername(Long userId, String username) {
         return userMapper.existUsername(userId, username);
     }
 

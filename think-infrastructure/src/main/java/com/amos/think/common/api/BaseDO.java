@@ -3,7 +3,6 @@ package com.amos.think.common.api;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,9 +28,8 @@ import java.time.LocalDateTime;
 public abstract class BaseDO {
 
     @Id
-    @GeneratedValue(generator = "uuid-self")
-    @GenericGenerator(name = "uuid-self", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @CreatedDate
     private LocalDateTime createTime;

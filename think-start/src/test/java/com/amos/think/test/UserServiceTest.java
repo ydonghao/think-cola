@@ -105,7 +105,7 @@ public class UserServiceTest {
         SingleResponse<UserVO> userInfoResponse = userService.getUserInfo(username);
         Assert.assertTrue(userInfoResponse.isSuccess() && userInfoResponse.getData() != null);
 
-        String userId = userInfoResponse.getData().getId();
+        Long userId = userInfoResponse.getData().getId();
 
         UserModifyCmd userModify = new UserModifyCmd();
 

@@ -51,6 +51,6 @@ public interface UserGateway {
      * @param username 用户名
      * @return true-已存在
      */
-    Boolean existUsername(String userId, String username);
+    Boolean existUsername(Long userId, String username);
 
 }

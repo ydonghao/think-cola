@@ -22,6 +22,6 @@ public interface UserMapper {
 
     List<UserDO> listByName(UserListByNameQuery query);
 
-    Boolean existUsername(@Param("userId") String userId, @Param("username") String username);
+    Boolean existUsername(@Param("userId") Long userId, @Param("username") String username);
 
 }
