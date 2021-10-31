@@ -16,6 +16,11 @@ public class UserEntity {
     private Long id;
 
     /**
+     * 姓名
+     */
+    private String name;
+
+    /**
      * 用户名
      */
     private String username;
@@ -27,11 +32,6 @@ public class UserEntity {
      * 密码盐
      */
     private String salt;
-
-    /**
-     * 姓名
-     */
-    private String name;
 
     private String phoneNo;
 
