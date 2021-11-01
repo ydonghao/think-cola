@@ -1,7 +1,6 @@
 package com.amos.think.test;
 
 import com.alibaba.cola.dto.MultiResponse;
-import com.alibaba.fastjson.JSON;
 import com.amos.think.api.IUserService;
 import com.amos.think.dto.data.UserVO;
 import com.amos.think.dto.query.UserListByNameQuery;
@@ -10,15 +9,12 @@ import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.annotation.Resource;
@@ -45,16 +41,15 @@ public class UserControllerTest {
 
         UserVO userVO = new UserVO();
         userVO.setId(0L);
-        userVO.setUsername("amos.wang");
         userVO.setName(name);
+        userVO.setUsername("amos.wang");
 
         Mockito.when(userService.listByName(UserListByNameQuery.builder().name(name).build()))
                 .thenReturn(MultiResponse.of(Lists.list(userVO)));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/user/list"))
-                .andExpect(MockMvcResultMatchers.model().attribute("name", name))
-                .andExpect(MockMvcResultMatchers.content().json(JSON.toJSONString(Lists.list(userVO))));
-
+        mockMvc.perform(MockMvcRequestBuilders.get("/user/list").param("name", name))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 }

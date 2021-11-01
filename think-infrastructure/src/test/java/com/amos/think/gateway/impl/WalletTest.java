@@ -20,9 +20,9 @@ public class WalletTest {
         walletDO.setUserId(1L);
         walletDO.setBalance(new BigDecimal("100"));
         walletDO.setId(1L);
-        walletDO.setCreateTime(LocalDateTime.now());
+        walletDO.setGmtCreate(LocalDateTime.now());
         walletDO.setCreator("amos.wang");
-        walletDO.setModifyTime(LocalDateTime.now());
+        walletDO.setGmtModify(LocalDateTime.now());
         walletDO.setModifier("amos.wang");
         walletDO.setDeleteFlag(false);
 

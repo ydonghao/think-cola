@@ -42,10 +42,10 @@ public class UserGatewayTest {
         userDO.setPassword("123456");
         userDO.setName("amos.wang");
 
-        Mockito.when(userMapper.getUserInfo(username))
+        Mockito.when(userMapper.findByUsername(username))
                 .thenReturn(userDO);
 
-        UserEntity amos = userGateway.getUserInfo(username);
+        UserEntity amos = userGateway.findByUsername(username);
 
         Assert.assertNotNull(amos);
         Assert.assertEquals(amos.getUsername(), username);

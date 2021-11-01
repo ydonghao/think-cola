@@ -14,6 +14,6 @@ public class UserMapperTest {
 
     @Test
     public void testFindByID() {
-        System.out.println(userGateway.getUserInfo("amos"));
+        System.out.println(userGateway.findByUsername("amos"));
     }
 }
